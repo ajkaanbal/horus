@@ -70,6 +70,10 @@ def authenticated(request, userid):
 
     location = get_config_route(request, 'horus.login_redirect')
 
+    came_from = request.GET.get('came_from')
+    if came_from:
+        location = came_from
+
     return HTTPFound(location=location, headers=headers)
 
 
